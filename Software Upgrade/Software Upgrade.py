@@ -607,8 +607,12 @@ def runTest():
                                         if ( boot_image == 0 or boot_image == 1 or boot_image == 2):
                                             test_result = "PASS"
                                         elif(boot_image == 3 or boot_image == 4 or boot_image == 5):
+                                            TEST_CREATION_API.send_ir_rc_command("[TV]")
                                             TEST_CREATION_API.send_ir_rc_command("[CH_1]")
-                                            NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
+                                            boot_image = NOS_API.wait_for_multiple_pictures(["No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 5, ["[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,60,HDMI_threshold])
+                                            if ( boot_image >= 0 and boot_image < 3):
+                                                TEST_CREATION_API.send_ir_rc_command("[TV]")
+                                                NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
                                             boot_image = NOS_API.wait_for_multiple_pictures(["HDMI_video_1080_ref","HDMI_video_1080_ref1","Banner_1080_ref","No_Signal_ref"], 45, ["[HALF_SCREEN_1080p]","[HALF_SCREEN_1080p]","[BANNER_1080]","[NO_SIGNAL]"], [HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold])
                                             if ( boot_image == 0 or boot_image == 1 or boot_image == 2):
                                                 test_result = "PASS"
@@ -896,8 +900,12 @@ def runTest():
                                             if ( boot_image == 0 or boot_image == 1 or boot_image == 2):
                                                 test_result = "PASS"
                                             elif(boot_image == 3 or boot_image == 4 or boot_image == 5):
+                                                TEST_CREATION_API.send_ir_rc_command("[TV]")
                                                 TEST_CREATION_API.send_ir_rc_command("[CH_1]")
-                                                NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
+                                                boot_image = NOS_API.wait_for_multiple_pictures(["No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 5, ["[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,60,HDMI_threshold])
+                                                if ( boot_image >= 0 and boot_image < 3):
+                                                    TEST_CREATION_API.send_ir_rc_command("[TV]")
+                                                    NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
                                                 boot_image = NOS_API.wait_for_multiple_pictures(["HDMI_video_1080_ref","HDMI_video_1080_ref1","Banner_1080_ref","No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 45, ["[HALF_SCREEN_1080p]","[HALF_SCREEN_1080p]","[BANNER_1080]","[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold,60,HDMI_threshold])
                                                 TEST_CREATION_API.write_log_to_file("boot image after rf = " + str(boot_image))
                                                 if ( boot_image == 0 or boot_image == 1 or boot_image == 2):
@@ -1280,8 +1288,12 @@ def runTest():
                                         NOS_API.SET_576 = True
                                     test_result = "PASS"
                                 elif(boot_image >= 6 and boot_image <= 8):
+                                    TEST_CREATION_API.send_ir_rc_command("[TV]")
                                     TEST_CREATION_API.send_ir_rc_command("[CH_1]")
-                                    NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
+                                    boot_image = NOS_API.wait_for_multiple_pictures(["No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 5, ["[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,60,HDMI_threshold])
+                                    if ( boot_image >= 0 and boot_image < 3):
+                                        TEST_CREATION_API.send_ir_rc_command("[TV]")
+                                        NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
                                 #  boot_image = NOS_API.wait_for_multiple_pictures(["HDMI_video_1080_ref","HDMI_video_1080_ref1","Banner_1080_ref","No_Signal_ref"], 45, ["[HALF_SCREEN_1080p]","[HALF_SCREEN_1080p]","[BANNER_1080]","[NO_SIGNAL]"], [HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold])
                                     boot_image = NOS_API.wait_for_multiple_pictures(["HDMI_video_1080_ref","HDMI_video_1080_ref1","HDMI_video_ref","HDMI_video_ref1","Banner_1080_ref","HDMI_video_576_ref","No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 45, ["[HALF_SCREEN_1080p]","[HALF_SCREEN_1080p]","[HALF_SCREEN_720p]","[HALF_SCREEN_720p]","[BANNER_1080]","[HALF_SCREEN_576p]","[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold,60,HDMI_threshold,60,HDMI_threshold])
                                     if ( boot_image >= 0 and boot_image <= 5):
@@ -1535,8 +1547,12 @@ def runTest():
                                                 NOS_API.SET_576 = True
                                             test_result = "PASS"
                                         elif(boot_image >= 6 and boot_image <= 8):
+                                            TEST_CREATION_API.send_ir_rc_command("[TV]")
                                             TEST_CREATION_API.send_ir_rc_command("[CH_1]")
-                                            NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
+                                            boot_image = NOS_API.wait_for_multiple_pictures(["No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 5, ["[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,60,HDMI_threshold])
+                                            if ( boot_image >= 0 and boot_image < 3):
+                                                TEST_CREATION_API.send_ir_rc_command("[TV]")
+                                                NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
                                             boot_image = NOS_API.wait_for_multiple_pictures(["HDMI_video_1080_ref","HDMI_video_1080_ref1","HDMI_video_ref","HDMI_video_ref1","Banner_1080_ref","HDMI_video_576_ref","No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 45, ["[HALF_SCREEN_1080p]","[HALF_SCREEN_1080p]","[HALF_SCREEN_720p]","[HALF_SCREEN_720p]","[BANNER_1080]","[HALF_SCREEN_576p]","[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold,60,HDMI_threshold,60,HDMI_threshold])
                                             if ( boot_image >= 0 and boot_image <= 5):
                                                 if(boot_image == 2 or boot_image == 3):
@@ -1879,8 +1895,12 @@ def runTest():
                                             NOS_API.SET_576 = True
                                         test_result = "PASS"
                                     elif(boot_image >= 6 and boot_image <= 8):
+                                        TEST_CREATION_API.send_ir_rc_command("[TV]")
                                         TEST_CREATION_API.send_ir_rc_command("[CH_1]")
-                                        NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
+                                        boot_image = NOS_API.wait_for_multiple_pictures(["No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 5, ["[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,60,HDMI_threshold])
+                                        if ( boot_image >= 0 and boot_image < 3):
+                                            TEST_CREATION_API.send_ir_rc_command("[TV]")
+                                            NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
                                         boot_image = NOS_API.wait_for_multiple_pictures(["HDMI_video_1080_ref","HDMI_video_1080_ref1","HDMI_video_ref","HDMI_video_ref1","Banner_1080_ref","HDMI_video_576_ref","No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 45, ["[HALF_SCREEN_1080p]","[HALF_SCREEN_1080p]","[HALF_SCREEN_720p]","[HALF_SCREEN_720p]","[BANNER_1080]","[HALF_SCREEN_576p]","[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold,60,HDMI_threshold,60,HDMI_threshold])
                                         if ( boot_image >= 0 and boot_image <= 5):
                                             if(boot_image == 2 or boot_image == 3):
@@ -2336,8 +2356,12 @@ def runTest():
                                     if ( boot_image == 0 or boot_image == 1 or boot_image == 2):
                                         test_result = "PASS"
                                     elif(boot_image == 3 or boot_image == 4 or boot_image == 5):
+                                        TEST_CREATION_API.send_ir_rc_command("[TV]")
                                         TEST_CREATION_API.send_ir_rc_command("[CH_1]")
-                                        NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
+                                        boot_image = NOS_API.wait_for_multiple_pictures(["No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 5, ["[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,60,HDMI_threshold])
+                                        if ( boot_image >= 0 and boot_image < 3):
+                                            TEST_CREATION_API.send_ir_rc_command("[TV]")
+                                            NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
                                         boot_image = NOS_API.wait_for_multiple_pictures(["HDMI_video_1080_ref","HDMI_video_1080_ref1","Banner_1080_ref","No_Signal_ref"], 45, ["[HALF_SCREEN_1080p]","[HALF_SCREEN_1080p]","[BANNER_1080]","[NO_SIGNAL]"], [HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold])
                                         if ( boot_image == 0 or boot_image == 1 or boot_image == 2):
                                             test_result = "PASS"
@@ -2633,8 +2657,12 @@ def runTest():
                                         if ( boot_image == 0 or boot_image == 1 or boot_image == 2):
                                             test_result = "PASS"
                                         elif(boot_image == 3 or boot_image == 4 or boot_image == 5):
+                                            TEST_CREATION_API.send_ir_rc_command("[TV]")
                                             TEST_CREATION_API.send_ir_rc_command("[CH_1]")
-                                            NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
+                                            boot_image = NOS_API.wait_for_multiple_pictures(["No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 5, ["[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,60,HDMI_threshold])
+                                            if ( boot_image >= 0 and boot_image < 3):
+                                                TEST_CREATION_API.send_ir_rc_command("[TV]")
+                                                NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
                                             boot_image = NOS_API.wait_for_multiple_pictures(["HDMI_video_1080_ref","HDMI_video_1080_ref1","Banner_1080_ref","No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 45, ["[HALF_SCREEN_1080p]","[HALF_SCREEN_1080p]","[BANNER_1080]","[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold,60,HDMI_threshold])
                                             TEST_CREATION_API.write_log_to_file("boot image after rf = " + str(boot_image))
                                             if ( boot_image == 0 or boot_image == 1 or boot_image == 2):
@@ -3042,8 +3070,12 @@ def runTest():
                                     NOS_API.SET_576 = True
                                 test_result = "PASS"
                             elif(boot_image >= 6 and boot_image <= 8):
+                                TEST_CREATION_API.send_ir_rc_command("[TV]")
                                 TEST_CREATION_API.send_ir_rc_command("[CH_1]")
-                                NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
+                                boot_image = NOS_API.wait_for_multiple_pictures(["No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 5, ["[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,60,HDMI_threshold])
+                                if ( boot_image >= 0 and boot_image < 3):
+                                    TEST_CREATION_API.send_ir_rc_command("[TV]")
+                                    NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
                               #  boot_image = NOS_API.wait_for_multiple_pictures(["HDMI_video_1080_ref","HDMI_video_1080_ref1","Banner_1080_ref","No_Signal_ref"], 45, ["[HALF_SCREEN_1080p]","[HALF_SCREEN_1080p]","[BANNER_1080]","[NO_SIGNAL]"], [HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold])
                                 boot_image = NOS_API.wait_for_multiple_pictures(["HDMI_video_1080_ref","HDMI_video_1080_ref1","HDMI_video_ref","HDMI_video_ref1","Banner_1080_ref","HDMI_video_576_ref","No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 45, ["[HALF_SCREEN_1080p]","[HALF_SCREEN_1080p]","[HALF_SCREEN_720p]","[HALF_SCREEN_720p]","[BANNER_1080]","[HALF_SCREEN_576p]","[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold,60,HDMI_threshold,60,HDMI_threshold])
                                 if ( boot_image >= 0 and boot_image <= 5):
@@ -3433,8 +3465,12 @@ def runTest():
                                             NOS_API.SET_576 = True
                                         test_result = "PASS"
                                     elif(boot_image >= 6 and boot_image <= 8):
+                                        TEST_CREATION_API.send_ir_rc_command("[TV]")
                                         TEST_CREATION_API.send_ir_rc_command("[CH_1]")
-                                        NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
+                                        boot_image = NOS_API.wait_for_multiple_pictures(["No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 5, ["[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,60,HDMI_threshold])
+                                        if ( boot_image >= 0 and boot_image < 3):
+                                            TEST_CREATION_API.send_ir_rc_command("[TV]")
+                                            NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
                                         boot_image = NOS_API.wait_for_multiple_pictures(["HDMI_video_1080_ref","HDMI_video_1080_ref1","HDMI_video_ref","HDMI_video_ref1","Banner_1080_ref","HDMI_video_576_ref","No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 45, ["[HALF_SCREEN_1080p]","[HALF_SCREEN_1080p]","[HALF_SCREEN_720p]","[HALF_SCREEN_720p]","[BANNER_1080]","[HALF_SCREEN_576p]","[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold,60,HDMI_threshold,60,HDMI_threshold])
                                         if ( boot_image >= 0 and boot_image <= 5):
                                             if(boot_image == 2 or boot_image == 3):
@@ -3901,8 +3937,12 @@ def runTest():
                                         NOS_API.SET_576 = True
                                     test_result = "PASS"
                                 elif(boot_image >= 6 and boot_image <= 8):
+                                    TEST_CREATION_API.send_ir_rc_command("[TV]")
                                     TEST_CREATION_API.send_ir_rc_command("[CH_1]")
-                                    NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
+                                    boot_image = NOS_API.wait_for_multiple_pictures(["No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 5, ["[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,60,HDMI_threshold])
+                                    if ( boot_image >= 0 and boot_image < 3):
+                                        TEST_CREATION_API.send_ir_rc_command("[TV]")
+                                        NOS_API.display_custom_dialog("Confirme o cabo RF", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
                                     boot_image = NOS_API.wait_for_multiple_pictures(["HDMI_video_1080_ref","HDMI_video_1080_ref1","HDMI_video_ref","HDMI_video_ref1","Banner_1080_ref","HDMI_video_576_ref","No_Signal_ref","No_Signal_576_ref","No_Signal_720_ref"], 45, ["[HALF_SCREEN_1080p]","[HALF_SCREEN_1080p]","[HALF_SCREEN_720p]","[HALF_SCREEN_720p]","[BANNER_1080]","[HALF_SCREEN_576p]","[NO_SIGNAL]","[NO_SIGNAL_576]","[NO_SIGNAL_720]"], [HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold,HDMI_threshold,60,HDMI_threshold,60,HDMI_threshold])
 
                                     if ( boot_image >= 0 and boot_image <= 5):
