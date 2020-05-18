@@ -120,6 +120,7 @@ def runTest():
                     video_result_Install = NOS_API.compare_pictures("Install_Menu_1080_ref", "Menu", "[MENU_ICON_1080p]")
                     video_result_Install1 = NOS_API.compare_pictures("Install_Menu_1080_ref1", "Menu", "[MENU_ICON_1080p]")
                     video_result_Install_Eng = NOS_API.compare_pictures("Install_Menu_1080_ENG_ref", "Menu", "[MENU_ICON_1080p]")
+                    video_result_Install_Eng1 = NOS_API.compare_pictures("Install_Menu_1080_ENG_ref1", "Menu", "[MENU_ICON_1080p]")
                     video_result_Channel = NOS_API.compare_pictures("Channel_Menu_1080_ref", "Menu", "[MENU_ICON_1080p]")
                     video_result_Channel_ENG = NOS_API.compare_pictures("Channel_Menu_1080_ENG_ref", "Menu", "[MENU_ICON_1080p]")
                     video_result_Config = NOS_API.compare_pictures("Config_menu_1080_ref", "Menu", "[MENU_ICON_1080p]")
@@ -127,7 +128,7 @@ def runTest():
                 
                 
                 
-                if(video_result_Install >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Install1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Install_Eng >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                if(video_result_Install >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Install1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Install_Eng >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Install_Eng1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                     if(NOS_API.SET_720):
                         TEST_CREATION_API.send_ir_rc_command("[LEFT]")
                         
@@ -1018,7 +1019,7 @@ def runTest():
                     
                     TEST_CREATION_API.send_ir_rc_command("[MENU]")
                     time.sleep(1)
-                    if not(NOS_API.grab_picture("Menu")):
+                    if not(NOS_API.grab_picture("Menu_1")):
                         TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
                         NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
                                                             + "; Error message: " + NOS_API.test_cases_results_info.image_absence_hdmi_error_message)
@@ -1059,33 +1060,34 @@ def runTest():
                         return
                     
                     if(NOS_API.SET_576):
-                        video_result_Install = NOS_API.compare_pictures("Install_Menu_576_ref", "Menu", "[MENU_ICON_576p]")
-                        video_result_Install1 = NOS_API.compare_pictures("Install_Menu_576_ref1", "Menu", "[MENU_ICON_576p]")
-                        video_result_Install_Eng = NOS_API.compare_pictures("Install_Menu_576_ENG_ref", "Menu", "[MENU_ICON_576p]")
-                        video_result_Channel = NOS_API.compare_pictures("Channel_Menu_576_ref", "Menu", "[MENU_ICON_576p]")
-                        video_result_Channel_ENG = NOS_API.compare_pictures("Channel_Menu_576_ENG_ref", "Menu", "[MENU_ICON_576p]")
-                        video_result_Config = NOS_API.compare_pictures("Config_menu_576_ref", "Menu", "[MENU_ICON_576p]")
-                        video_result_Config_ENG = NOS_API.compare_pictures("Config_menu_576_ENG_ref", "Menu", "[MENU_ICON_576p]")
+                        video_result_Install = NOS_API.compare_pictures("Install_Menu_576_ref", "Menu_1", "[MENU_ICON_576p]")
+                        video_result_Install1 = NOS_API.compare_pictures("Install_Menu_576_ref1", "Menu_1", "[MENU_ICON_576p]")
+                        video_result_Install_Eng = NOS_API.compare_pictures("Install_Menu_576_ENG_ref", "Menu_1", "[MENU_ICON_576p]")
+                        video_result_Channel = NOS_API.compare_pictures("Channel_Menu_576_ref", "Menu_1", "[MENU_ICON_576p]")
+                        video_result_Channel_ENG = NOS_API.compare_pictures("Channel_Menu_576_ENG_ref", "Menu_1", "[MENU_ICON_576p]")
+                        video_result_Config = NOS_API.compare_pictures("Config_menu_576_ref", "Menu_1", "[MENU_ICON_576p]")
+                        video_result_Config_ENG = NOS_API.compare_pictures("Config_menu_576_ENG_ref", "Menu_1", "[MENU_ICON_576p]")
                     elif(NOS_API.SET_720):
-                        video_result_Install = NOS_API.compare_pictures("Install_Menu_720_ref", "Menu", "[MENU_ICON_720p]")
-                        video_result_Install1 = NOS_API.compare_pictures("Install_Menu_720_ref1", "Menu", "[MENU_ICON_720p]")
-                        video_result_Install_Eng = NOS_API.compare_pictures("Install_Menu_720_ENG_ref", "Menu", "[MENU_ICON_720p]")
-                        video_result_Channel = NOS_API.compare_pictures("Channel_Menu_720_ref", "Menu", "[MENU_ICON_720p]")
-                        video_result_Channel_ENG = NOS_API.compare_pictures("Channel_Menu_720_ENG_ref", "Menu", "[MENU_ICON_720p]")
-                        video_result_Config = NOS_API.compare_pictures("Config_menu_720_ref", "Menu", "[MENU_ICON_720p]")
-                        video_result_Config_ENG = NOS_API.compare_pictures("Config_menu_720_ENG_ref", "Menu", "[MENU_ICON_720p]")
+                        video_result_Install = NOS_API.compare_pictures("Install_Menu_720_ref", "Menu_1", "[MENU_ICON_720p]")
+                        video_result_Install1 = NOS_API.compare_pictures("Install_Menu_720_ref1", "Menu_1", "[MENU_ICON_720p]")
+                        video_result_Install_Eng = NOS_API.compare_pictures("Install_Menu_720_ENG_ref", "Menu_1", "[MENU_ICON_720p]")
+                        video_result_Channel = NOS_API.compare_pictures("Channel_Menu_720_ref", "Menu_1", "[MENU_ICON_720p]")
+                        video_result_Channel_ENG = NOS_API.compare_pictures("Channel_Menu_720_ENG_ref", "Menu_1", "[MENU_ICON_720p]")
+                        video_result_Config = NOS_API.compare_pictures("Config_menu_720_ref", "Menu_1", "[MENU_ICON_720p]")
+                        video_result_Config_ENG = NOS_API.compare_pictures("Config_menu_720_ENG_ref", "Menu_1", "[MENU_ICON_720p]")
                     else:
-                        video_result_Install = NOS_API.compare_pictures("Install_Menu_1080_ref", "Menu", "[MENU_ICON_1080p]")
-                        video_result_Install1 = NOS_API.compare_pictures("Install_Menu_1080_ref1", "Menu", "[MENU_ICON_1080p]")
-                        video_result_Install_Eng = NOS_API.compare_pictures("Install_Menu_1080_ENG_ref", "Menu", "[MENU_ICON_1080p]")
-                        video_result_Channel = NOS_API.compare_pictures("Channel_Menu_1080_ref", "Menu", "[MENU_ICON_1080p]")
-                        video_result_Channel_ENG = NOS_API.compare_pictures("Channel_Menu_1080_ENG_ref", "Menu", "[MENU_ICON_1080p]")
-                        video_result_Config = NOS_API.compare_pictures("Config_menu_1080_ref", "Menu", "[MENU_ICON_1080p]")
-                        video_result_Config_ENG = NOS_API.compare_pictures("Config_menu_1080_ENG_ref", "Menu", "[MENU_ICON_1080p]")
+                        video_result_Install = NOS_API.compare_pictures("Install_Menu_1080_ref", "Menu_1", "[MENU_ICON_1080p]")
+                        video_result_Install1 = NOS_API.compare_pictures("Install_Menu_1080_ref1", "Menu_1", "[MENU_ICON_1080p]")
+                        video_result_Install_Eng = NOS_API.compare_pictures("Install_Menu_1080_ENG_ref", "Menu_1", "[MENU_ICON_1080p]")
+                        video_result_Install_Eng1 = NOS_API.compare_pictures("Install_Menu_1080_ENG_ref1", "Menu_1", "[MENU_ICON_1080p]")
+                        video_result_Channel = NOS_API.compare_pictures("Channel_Menu_1080_ref", "Menu_1", "[MENU_ICON_1080p]")
+                        video_result_Channel_ENG = NOS_API.compare_pictures("Channel_Menu_1080_ENG_ref", "Menu_1", "[MENU_ICON_1080p]")
+                        video_result_Config = NOS_API.compare_pictures("Config_menu_1080_ref", "Menu_1", "[MENU_ICON_1080p]")
+                        video_result_Config_ENG = NOS_API.compare_pictures("Config_menu_1080_ENG_ref", "Menu_1", "[MENU_ICON_1080p]")
                     
                     
                     
-                    if(video_result_Install >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Install1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Install_Eng >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                    if(video_result_Install >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Install1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Install_Eng >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Install_Eng1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                         if(NOS_API.SET_720):
                             TEST_CREATION_API.send_ir_rc_command("[LEFT]")
                             
