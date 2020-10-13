@@ -128,7 +128,7 @@ def runTest():
                 
                 
                 
-                if(video_result_Install >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Install1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Install_Eng >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Install_Eng1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                if(video_result_Install >= NOS_API.thres or video_result_Install1 >= NOS_API.thres or video_result_Install_Eng >= NOS_API.thres or video_result_Install_Eng1 >= NOS_API.thres):
                     if(NOS_API.SET_720):
                         TEST_CREATION_API.send_ir_rc_command("[LEFT]")
                         
@@ -424,7 +424,7 @@ def runTest():
                     TEST_CREATION_API.send_ir_rc_command("[RIGHT]")
                     
                     TEST_CREATION_API.send_ir_rc_command("[EXIT]")
-                elif(video_result_Channel >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Channel_ENG >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                elif(video_result_Channel >= NOS_API.thres or video_result_Channel_ENG >= NOS_API.thres):
                     if(NOS_API.SET_720):
                         TEST_CREATION_API.send_ir_rc_command("[RIGHT]")
                         
@@ -725,7 +725,7 @@ def runTest():
                     TEST_CREATION_API.send_ir_rc_command("[RIGHT]")
                     
                     TEST_CREATION_API.send_ir_rc_command("[EXIT]")
-                elif(video_result_Config >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Config_ENG >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                elif(video_result_Config >= NOS_API.thres or video_result_Config_ENG >= NOS_API.thres):
                     if(NOS_API.SET_720):                    
                         TEST_CREATION_API.send_ir_rc_command("[SET_RESOLUTION_1080i]")
                         video_height = TEST_CREATION_API.get_av_format_info(TEST_CREATION_API.AudioVideoInfoType.video_height)
@@ -1087,7 +1087,7 @@ def runTest():
                     
                     
                     
-                    if(video_result_Install >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Install1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Install_Eng >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Install_Eng1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                    if(video_result_Install >= NOS_API.thres or video_result_Install1 >= NOS_API.thres or video_result_Install_Eng >= NOS_API.thres or video_result_Install_Eng1 >= NOS_API.thres):
                         if(NOS_API.SET_720):
                             TEST_CREATION_API.send_ir_rc_command("[LEFT]")
                             
@@ -1386,7 +1386,7 @@ def runTest():
                         TEST_CREATION_API.send_ir_rc_command("[RIGHT]")
                         
                         TEST_CREATION_API.send_ir_rc_command("[EXIT]")
-                    elif(video_result_Channel >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Channel_ENG >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                    elif(video_result_Channel >= NOS_API.thres or video_result_Channel_ENG >= NOS_API.thres):
                         if(NOS_API.SET_720):
                             TEST_CREATION_API.send_ir_rc_command("[RIGHT]")
                             
@@ -1687,7 +1687,7 @@ def runTest():
                         TEST_CREATION_API.send_ir_rc_command("[RIGHT]")
                             
                         TEST_CREATION_API.send_ir_rc_command("[EXIT]")
-                    elif(video_result_Config >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_Config_ENG >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                    elif(video_result_Config >= NOS_API.thres or video_result_Config_ENG >= NOS_API.thres):
                         if(NOS_API.SET_720):                    
                             TEST_CREATION_API.send_ir_rc_command("[SET_RESOLUTION_1080i]")
                             video_height = TEST_CREATION_API.get_av_format_info(TEST_CREATION_API.AudioVideoInfoType.video_height)

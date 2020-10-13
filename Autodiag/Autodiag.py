@@ -155,7 +155,7 @@ def runTest():
             ## Enter autodiag        
             TEST_CREATION_API.send_ir_rc_command("[ENTER_AUTODIAG]")
             
-            if (NOS_API.wait_for_multiple_pictures(["Led_Vermelho_Canal_ref", "Led_Vermelho_Black_ref", "Led_Vermelho_Canal_720_ref"], 45, ["[LED_Question]","[LED_Question]", "[LED_Question_720]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 70, TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD]) != -1):
+            if (NOS_API.wait_for_multiple_pictures(["Led_Vermelho_Canal_ref", "Led_Vermelho_Black_ref", "Led_Vermelho_Canal_720_ref", "Led_Vermelho_Canal_720_ref1", "Led_Vermelho_Canal_720_ref2"], 45, ["[LED_Question]","[LED_Question]", "[LED_Question_720]", "[LED_Question_720]", "[LED_Question_720]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 70, TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD]) != -1):
                 while(counter < 2):
                     if not(Led_result):
                         if (NOS_API.display_custom_dialog("O Led Power est\xe1 Vermelho?", 2, ["OK", "NOK"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG) == "OK"):
@@ -164,12 +164,12 @@ def runTest():
                             if (NOS_API.display_custom_dialog("O Led Power est\xe1 Verde?", 2, ["OK", "NOK"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG) == "OK"):
                                 TEST_CREATION_API.send_ir_rc_command("[OK]")
                                 time.sleep(1)
-                                if (NOS_API.wait_for_multiple_pictures(["USB_Canal_ref", "USB_Black_ref", "USB_Canal_720_ref"], 45, ["[USB_Question]","[USB_Question]", "[USB_Question_720]" ], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 70, TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD]) != -1):                                
+                                if (NOS_API.wait_for_multiple_pictures(["USB_Canal_ref", "USB_Black_ref", "USB_Canal_720_ref", "USB_Canal_720_ref2", "USB_Canal_720_ref3"], 45, ["[USB_Question]","[USB_Question]", "[USB_Question_720]", "[USB_Question_720]", "[USB_Question_720]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 70, TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD]) != -1):                                
                                     TEST_CREATION_API.send_ir_rc_command("[OK]")
                                     time.sleep(1)
                                     if(Retest):
                                         time.sleep(15)
-                                    if (NOS_API.wait_for_multiple_pictures(["OK_ref", "NOK_ref"], 45, ["[AD_RESULT]", "[AD_RESULT]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 70]) != -1):
+                                    if (NOS_API.wait_for_multiple_pictures(["OK_ref", "OK_ref1", "OK_ref2", "NOK_ref", "NOK_ref"], 45, ["[AD_RESULT]", "[AD_RESULT]", "[AD_RESULT]", "[AD_RESULT]", "[AD_RESULT]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 70, 70]) != -1):
                                         if not(NOS_API.grab_picture("AutoDiag_Result")):
                                             TEST_CREATION_API.write_log_to_file("HDMI NOK")
                                             NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
@@ -211,8 +211,11 @@ def runTest():
                                             return
                         
                                         video_result1 = NOS_API.compare_pictures("OK_ref", "AutoDiag_Result", "[AD_RESULT]")
-                                        video_result2 = NOS_API.compare_pictures("NOK_ref", "AutoDiag_Result", "[AD_RESULT]")
-                                        if (video_result1 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                        video_result2 = NOS_API.compare_pictures("OK_ref1", "AutoDiag_Result", "[AD_RESULT]")
+                                        video_result3 = NOS_API.compare_pictures("OK_ref2", "AutoDiag_Result", "[AD_RESULT]")
+                                        video_result4 = NOS_API.compare_pictures("NOK_ref", "AutoDiag_Result", "[AD_RESULT]")
+                                        video_result5 = NOS_API.compare_pictures("NOK_ref1", "AutoDiag_Result", "[AD_RESULT]")
+                                        if (video_result1 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result2 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result3 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                                             test_result = "PASS"
                                             counter = 4
                                             NOS_API.Send_Serial_Key("d", "feito")
@@ -253,18 +256,28 @@ def runTest():
                                                 return   
                                         else: 
                                             final_result1 = NOS_API.compare_pictures("OK_ref", "AutoDiag_Result", "[LED_RESULT]")
+                                            final_result11 = NOS_API.compare_pictures("OK_ref1", "AutoDiag_Result", "[LED_RESULT]")
+                                            final_result111 = NOS_API.compare_pictures("OK_ref2", "AutoDiag_Result", "[LED_RESULT]")
                                             final_result2 = NOS_API.compare_pictures("OK_ref", "AutoDiag_Result", "[USB_RESULT]")
+                                            final_result22 = NOS_API.compare_pictures("OK_ref1", "AutoDiag_Result", "[USB_RESULT]")
+                                            final_result222 = NOS_API.compare_pictures("OK_ref2", "AutoDiag_Result", "[USB_RESULT]")
                                             final_result3 = NOS_API.compare_pictures("OK_ref", "AutoDiag_Result", "[FLASH_RESULT]")
+                                            final_result33 = NOS_API.compare_pictures("OK_ref1", "AutoDiag_Result", "[FLASH_RESULT]")
+                                            final_result333 = NOS_API.compare_pictures("OK_ref2", "AutoDiag_Result", "[FLASH_RESULT]")
                                             final_result4 = NOS_API.compare_pictures("OK_ref", "AutoDiag_Result", "[ETH_RESULT]")
+                                            final_result44 = NOS_API.compare_pictures("OK_ref1", "AutoDiag_Result", "[ETH_RESULT]")
+                                            final_result444 = NOS_API.compare_pictures("OK_ref2", "AutoDiag_Result", "[ETH_RESULT]")
                                             final_result5 = NOS_API.compare_pictures("OK_ref", "AutoDiag_Result", "[FR_RESULT]")
+                                            final_result55 = NOS_API.compare_pictures("OK_ref1", "AutoDiag_Result", "[FR_RESULT]")
+                                            final_result555 = NOS_API.compare_pictures("OK_ref2", "AutoDiag_Result", "[FR_RESULT]")
                                             
-                                            if(video_result2 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and Retest == False):
+                                            if((video_result4 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result5 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD) and Retest == False):
                                                 Retest = True
-                                            if(final_result1 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and Led_result == False):
+                                            if((final_result1 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or final_result11 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or final_result111 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD) and Led_result == False):
                                                 Led_result = True
-                                            if(final_result2 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                            if(final_result2 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and final_result22 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and final_result222 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                                                 NOS_API.display_custom_dialog("Confirme o USB.", 2, ["OK", "NOK"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
-                                            if(final_result4 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                            if(final_result4 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and final_result44 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and final_result444 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                                                 NOS_API.display_custom_dialog("Confirme o cabo ETH.", 2, ["OK", "NOK"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
                                             counter += 1
                                             TEST_CREATION_API.send_ir_rc_command("[MENU]")
@@ -369,13 +382,13 @@ def runTest():
                         if (NOS_API.wait_for_multiple_pictures(["Led_Verde_Canal_ref", "Led_Verde_Black_ref"], 45, ["[LED_Question]", "[LED_Question]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 70]) != -1):
                             TEST_CREATION_API.send_ir_rc_command("[OK]")
                             time.sleep(1)
-                            if (NOS_API.wait_for_multiple_pictures(["USB_Canal_ref", "USB_Black_ref"], 45, ["[USB_Question]", "[USB_Question]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 70]) != -1):
+                            if (NOS_API.wait_for_multiple_pictures(["USB_Canal_ref", "USB_Black_ref", "USB_Canal_720_ref", "USB_Canal_720_ref2", "USB_Canal_720_ref3"], 45, ["[USB_Question]","[USB_Question]", "[USB_Question_720]", "[USB_Question_720]", "[USB_Question_720]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 70, TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD]) != -1):                               
                                 TEST_CREATION_API.send_ir_rc_command("[OK]")
                                 time.sleep(1)
                                 
                                 if(Retest):
                                     time.sleep(15)
-                                if (NOS_API.wait_for_multiple_pictures(["OK_ref", "NOK_ref"], 45, ["[AD_RESULT]","[AD_RESULT]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 70]) != -1):
+                                if (NOS_API.wait_for_multiple_pictures(["OK_ref", "OK_ref1", "NOK_ref"], 45, ["[AD_RESULT]","[AD_RESULT]","[AD_RESULT]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 70]) != -1):
                                     if not(NOS_API.grab_picture("AutoDiag_Result")):
                                         TEST_CREATION_API.write_log_to_file("HDMI NOK")
                                         NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
@@ -417,8 +430,11 @@ def runTest():
                                         return
                     
                                     video_result1 = NOS_API.compare_pictures("OK_ref", "AutoDiag_Result", "[AD_RESULT]")
-                                    video_result2 = NOS_API.compare_pictures("NOK_ref", "AutoDiag_Result", "[AD_RESULT]")
-                                    if (video_result1 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                    video_result2 = NOS_API.compare_pictures("OK_ref1", "AutoDiag_Result", "[AD_RESULT]")
+                                    video_result3 = NOS_API.compare_pictures("OK_ref2", "AutoDiag_Result", "[AD_RESULT]")
+                                    video_result4 = NOS_API.compare_pictures("NOK_ref", "AutoDiag_Result", "[AD_RESULT]")
+                                    video_result5 = NOS_API.compare_pictures("NOK_ref1", "AutoDiag_Result", "[AD_RESULT]")
+                                    if (video_result1 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result2 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result3 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                                         test_result = "PASS"
                                         counter = 4
                                         NOS_API.Send_Serial_Key("d", "feito")
@@ -459,13 +475,24 @@ def runTest():
                                             return         
                                     else: 
                                         final_result1 = NOS_API.compare_pictures("OK_ref", "AutoDiag_Result", "[LED_RESULT]")
+                                        final_result11 = NOS_API.compare_pictures("OK_ref1", "AutoDiag_Result", "[LED_RESULT]")
+                                        final_result111 = NOS_API.compare_pictures("OK_ref2", "AutoDiag_Result", "[LED_RESULT]")
                                         final_result2 = NOS_API.compare_pictures("OK_ref", "AutoDiag_Result", "[USB_RESULT]")
+                                        final_result22 = NOS_API.compare_pictures("OK_ref1", "AutoDiag_Result", "[USB_RESULT]")
+                                        final_result222 = NOS_API.compare_pictures("OK_ref2", "AutoDiag_Result", "[USB_RESULT]")
                                         final_result3 = NOS_API.compare_pictures("OK_ref", "AutoDiag_Result", "[FLASH_RESULT]")
+                                        final_result33 = NOS_API.compare_pictures("OK_ref1", "AutoDiag_Result", "[FLASH_RESULT]")
+                                        final_result333 = NOS_API.compare_pictures("OK_ref2", "AutoDiag_Result", "[FLASH_RESULT]")
                                         final_result4 = NOS_API.compare_pictures("OK_ref", "AutoDiag_Result", "[ETH_RESULT]")
+                                        final_result44 = NOS_API.compare_pictures("OK_ref1", "AutoDiag_Result", "[ETH_RESULT]")
+                                        final_result444 = NOS_API.compare_pictures("OK_ref2", "AutoDiag_Result", "[ETH_RESULT]")
                                         final_result5 = NOS_API.compare_pictures("OK_ref", "AutoDiag_Result", "[FR_RESULT]")
-                                        if(final_result1 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and Led_result == False):
+                                        final_result55 = NOS_API.compare_pictures("OK_ref1", "AutoDiag_Result", "[FR_RESULT]")
+                                        final_result555 = NOS_API.compare_pictures("OK_ref2", "AutoDiag_Result", "[FR_RESULT]")
+                                        
+                                        if((final_result1 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or final_result11 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or final_result111 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD) and Led_result == False):
                                             Led_result = True
-                                        if(final_result2 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and USB_result == False):
+                                        if((final_result2 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or final_result22 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or final_result222 > TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD) and USB_result == False):
                                             USB_result = True
                                         counter += 1
                                 else:
@@ -587,7 +614,7 @@ def runTest():
                             return
                 if(counter == 2):
                     
-                    if(final_result2 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and USB_result == False):
+                    if((final_result2 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and final_result22 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and final_result222 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD) and USB_result == False):
                         TEST_CREATION_API.write_log_to_file("USB NOK") 
                         NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.usb_nok_error_code \
                                                         + "; Error message: " + NOS_API.test_cases_results_info.usb_nok_error_message)
@@ -595,7 +622,7 @@ def runTest():
                         error_codes = NOS_API.test_cases_results_info.usb_nok_error_code
                         error_messages = NOS_API.test_cases_results_info.usb_nok_error_message
                     
-                    if(final_result3 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                    if(final_result3 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and final_result33 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and final_result333 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                         TEST_CREATION_API.write_log_to_file("Flash NOK") 
                         NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.flash_nok_error_code \
                                                         + "; Error message: " + NOS_API.test_cases_results_info.flash_nok_error_message)
@@ -603,7 +630,7 @@ def runTest():
                         error_codes = NOS_API.test_cases_results_info.flash_nok_error_code
                         error_messages = NOS_API.test_cases_results_info.flash_nok_error_message
                         
-                    if(final_result4 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                    if(final_result4 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and final_result44 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and final_result444 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                         TEST_CREATION_API.write_log_to_file("Ethernet NOK") 
                         NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.ethernet_nok_error_code \
                                                         + "; Error message: " + NOS_API.test_cases_results_info.ethernet_nok_error_message)
@@ -611,7 +638,7 @@ def runTest():
                         error_codes = NOS_API.test_cases_results_info.ethernet_nok_error_code
                         error_messages = NOS_API.test_cases_results_info.ethernet_nok_error_message
                         
-                    if(final_result5 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                    if(final_result5 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and final_result55 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and final_result555 < TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                         TEST_CREATION_API.write_log_to_file("Factory Reset NOK") 
                         NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.measure_boot_time_error_code \
                                                         + "; Error message: " + NOS_API.test_cases_results_info.measure_boot_time_error_message)
@@ -620,12 +647,12 @@ def runTest():
                         error_messages = NOS_API.test_cases_results_info.measure_boot_time_error_message
              
             else:
-                TEST_CREATION_API.write_log_to_file("Image is not reproduced correctly on HDMI.")
-                NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.hdmi_720p_noise_error_code \
-                                                    + "; Error message: " + NOS_API.test_cases_results_info.hdmi_720p_noise_error_message)
-                error_codes = NOS_API.test_cases_results_info.hdmi_720p_noise_error_code
-                error_messages = NOS_API.test_cases_results_info.hdmi_720p_noise_error_message
-                NOS_API.set_error_message("Video HDMI")
+                TEST_CREATION_API.write_log_to_file("Autodiag failed")
+                NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.autodiag_error_code \
+                                                + "; Error message: " + NOS_API.test_cases_results_info.autodiag_error_message)
+                NOS_API.set_error_message("AutoDiag")
+                error_codes = NOS_API.test_cases_results_info.autodiag_error_code
+                error_messages = NOS_API.test_cases_results_info.autodiag_error_message
                 
                 NOS_API.add_test_case_result_to_file_report(
                             test_result,
