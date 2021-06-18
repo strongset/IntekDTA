@@ -1278,7 +1278,7 @@ def runTest():
                         Comparison = NOS_API.wait_for_multiple_pictures(["OTA_Setup_ref","OTA_Setup_ref1"], 3, ["[OTA_SETUP]","[OTA_SETUP]"], [NOS_API.thres,NOS_API.thres])
                         if (Comparison == 0 or Comparison == 1):
                             TEST_CREATION_API.send_ir_rc_command("[OK]")
-                        if(NOS_API.wait_for_no_signal_present(60)):
+                        if(NOS_API.wait_for_no_signal_present(120)):
                             NOS_API.test_cases_results_info.DidUpgrade = 1
                             time.sleep(5)
                             if(NOS_API.wait_for_signal_present(60)):
